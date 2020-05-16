@@ -1,0 +1,42 @@
+long longNumber = getMeMyValue();
+if(longNumber >= 0 && longNumber < 1000){
+	print(longNumber);	
+ //println(" end ");
+}
+else{
+	long tempNumber = longNumber;
+	int count=0; // считаем количество цифр в числе
+	while(tempNumber!=0){
+		count++;
+		tempNumber/=10;
+  }
+
+//считаем количество триад
+int num3;
+if((count%3)==0)
+num3=count/3;
+else
+num3=(count/3)+1;
+
+// массив триад 123 456 789, заполняем его с конца
+long [] arrayOfThree = new long[num3];
+//заполняем массив триадами от последнего элемента до нулевого
+long j=1;
+for(int i=num3-1; i>=0; i--){
+	long temp=longNumber;
+	arrayOfThree[i]=(temp%(1000*j))/j ;
+	j*=1000;
+}
+//печатаем с начала, вставляя пробелы
+for (int i=0; i<arrayOfThree.length;i++){
+	if (arrayOfThree[0]==0) { // первый пустой разряд не печатаем
+		continue;
+	}
+	
+	print(arrayOfThree[i]);
+	if (i==(num3-1))
+	print("");
+else
+    print(" ");
+}
+}
